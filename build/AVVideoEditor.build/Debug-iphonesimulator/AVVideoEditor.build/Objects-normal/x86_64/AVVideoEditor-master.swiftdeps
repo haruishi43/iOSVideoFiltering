@@ -1,12 +1,12 @@
 version: "Apple Swift version 4.0 (swiftlang-900.0.65 clang-900.0.37)"
-options: "038a114f56f0d52c7a15a30678104568"
-build_time: [1507271482, 473250000]
+options: "a328087b3cc0e1f9ad5643cf0cfac628"
+build_time: [1507301898, 46616000]
 inputs:
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/FilteredVideo/Filter.swift": [1507215284, 0]
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/FilteredVideo/AVPlayerView.swift": [1507271482, 0]
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/ViewController+Actions.swift": [1507213091, 0]
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/FilterSelectionViewController.swift": [1507257306, 0]
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/ViewController.swift": [1507271482, 0]
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/ViewController+FilterSelection.swift": [1507261240, 0]
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/ViewController+Delegation.swift": [1507271482, 0]
-  "/Users/haruyaishikawa/Documents/2. Vision/AVVideoEditor/AVVideoEditor/SupportingFiles/AppDelegate.swift": [1507256806, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/FilteredVideo/Filter.swift": [1507215284, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/FilteredVideo/AVPlayerView.swift": [1507283909, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/ViewController+Actions.swift": [1507291017, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/FilterSelectionViewController.swift": [1507257306, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/ViewController.swift": [1507280183, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/ViewController+FilterSelection.swift": [1507285225, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/ViewController+Delegation.swift": [1507281920, 0]
+  "/Users/haruyaishikawa/Documents/3. AVFoundation/AVVideoEditor/AVVideoEditor/SupportingFiles/AppDelegate.swift": [1507256806, 0]

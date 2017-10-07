@@ -51,22 +51,51 @@ extension ViewController: FilterSelectionViewControllerDelegate {
             return
         }
         
-        let ciFilter = CIFilter(name: filter.filter)!
+        
         var composition: AVVideoComposition?
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
         
         switch filter.name {
-        case "Sepia":
+        case "Fancy":
             composition = AVVideoComposition(asset: (playerItem?.asset)!, applyingCIFiltersWithHandler: { request in
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage
-                ciFilter.setValue(source, forKey: kCIInputImageKey)
-                ciFilter.setValue(0.8, forKey: kCIInputIntensityKey)
                 
-                let output = ciFilter.outputImage!
+                // Fitlers
+                let colorFilter1 = CIFilter(name: "CIColorPolynomial")
+                let fancyLensFilterColor1 = UIColor(red:0.00, green:0.71, blue:1.00, alpha:0.16)
+                let colorControlFilter = CIFilter(name: "CIColorControls")
+                let colorFilter2 = CIFilter(name: "CIColorPolynomial")
+                let fancyLensFilterColor2 = UIColor(red:1.00, green:0.49, blue:0.87, alpha:0.1)
+
+                // Filter details
+                colorFilter1?.setValue(source, forKey: kCIInputImageKey)
+                fancyLensFilterColor1.getRed(&r, green: &g, blue: &b, alpha: &a)
+                colorFilter1?.setValue(CIVector(x: 0, y: 1, z: 0, w: r), forKey: "inputRedCoefficients")
+                colorFilter1?.setValue(CIVector(x: 0, y: 1, z: 0, w: g), forKey: "inputGreenCoefficients")
+                colorFilter1?.setValue(CIVector(x: 0, y: 1, z: 0, w: b), forKey: "inputBlueCoefficients")
+                colorFilter1?.setValue(CIVector(x: 0, y: 1, z: 0, w: a), forKey: "inputAlphaCoefficients")
+                var filteredImage: CIImage? = colorFilter1?.outputImage
                 
-                // Provide the filter output to the composition
-                request.finish(with: output, context: nil)
+                colorControlFilter?.setValue(filteredImage, forKey: kCIInputImageKey)
+                colorControlFilter?.setValue(0.64, forKey: "inputSaturation")
+                colorControlFilter?.setValue(0.05, forKey: "inputBrightness")
+                colorControlFilter?.setValue(0.36, forKey: "inputContrast")
+                filteredImage = colorControlFilter?.outputImage
+                
+                colorFilter2?.setValue(filteredImage, forKey: kCIInputImageKey)
+                fancyLensFilterColor2.getRed(&r, green: &g, blue: &b, alpha: &a)
+                colorFilter2?.setValue(CIVector(x: 0, y: 1, z: 0, w: r), forKey: "inputRedCoefficients")
+                colorFilter2?.setValue(CIVector(x: 0, y: 1, z: 0, w: g), forKey: "inputGreenCoefficients")
+                colorFilter2?.setValue(CIVector(x: 0, y: 1, z: 0, w: b), forKey: "inputBlueCoefficients")
+                colorFilter2?.setValue(CIVector(x: 0, y: 1, z: 0, w: a), forKey: "inputAlphaCoefficients")
+                filteredImage = colorFilter2?.outputImage
+                
+                request.finish(with: filteredImage!, context: nil)
             })
             
         case "Vignette":
@@ -74,7 +103,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 ciFilter.setValue(CIVector(x: request.sourceImage.extent.size.width / 2, y: request.sourceImage.extent.size.height / 2), forKey: kCIInputCenterKey)
                 ciFilter.setValue((request.sourceImage.extent.size.width / 2), forKey: kCIInputRadiusKey)
@@ -89,7 +118,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -102,7 +131,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -115,7 +144,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -128,7 +157,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -141,7 +170,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -154,7 +183,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -167,7 +196,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -180,7 +209,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -193,7 +222,7 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
                 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
@@ -206,9 +235,9 @@ extension ViewController: FilterSelectionViewControllerDelegate {
                 
                 // Clamp to avoid blurring transparent pixels at the image edges
                 let source = request.sourceImage.clampedToExtent()
-                
+                let ciFilter = CIFilter(name: filter.filter)!
                 ciFilter.setValue(source, forKey: kCIInputImageKey)
-                ciFilter.setValue(10.0, forKey: kCIInputRadiusKey)
+                ciFilter.setValue(3.0, forKey: kCIInputRadiusKey)
 
                 let output = ciFilter.outputImage!.cropped(to: request.sourceImage.extent)
                 

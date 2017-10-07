@@ -1,7 +1,7 @@
 [
     {
-        "name": "Sepia",
-        "filter": "CISepiaTone"
+        "name": "Fancy",
+        "filter": ""
     },
     {
         "name": "Vignette",
