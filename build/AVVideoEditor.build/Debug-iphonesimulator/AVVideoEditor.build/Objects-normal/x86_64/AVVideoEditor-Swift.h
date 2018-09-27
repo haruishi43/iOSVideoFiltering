@@ -242,6 +242,7 @@ SWIFT_CLASS("_TtC13AVVideoEditor14ViewController")
 @property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified timeLabel;
 @property (nonatomic, weak) IBOutlet UIView * _Null_unspecified timeLabelContainerView;
 @property (nonatomic, weak) IBOutlet UIButton * _Null_unspecified filterButton;
+@property (nonatomic, weak) IBOutlet UIButton * _Null_unspecified saveButton;
 - (void)viewDidLoad;
 - (void)didReceiveMemoryWarning;
 - (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
@@ -270,7 +271,8 @@ SWIFT_CLASS("_TtC13AVVideoEditor14ViewController")
 - (IBAction)uploadButtonTouched:(id _Nonnull)sender;
 - (IBAction)chooseFilter:(UIButton * _Nonnull)button;
 - (IBAction)playPauseButtonTouched:(id _Nonnull)sender;
-- (IBAction)sliderValueChanged:(id _Nonnull)sender;
+- (IBAction)sliderValueChanged:(UISlider * _Nonnull)sender;
+- (IBAction)saveButtonTouched:(UIButton * _Nonnull)sender;
 - (void)updateSlider;
 @end
 

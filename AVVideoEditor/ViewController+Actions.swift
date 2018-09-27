@@ -29,10 +29,10 @@ extension ViewController {
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         //------- Choosing images from camera bugs the process: ----->
-//        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-//            self.imagePickerController?.sourceType = .camera
-//            self.present(self.imagePickerController!, animated: true)
-//        }))
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+            self.imagePickerController?.sourceType = .camera
+            self.present(self.imagePickerController!, animated: true)
+        }))
         
         // Photo Album
         actionSheet.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: {(_ action: UIAlertAction) -> Void in
@@ -45,9 +45,6 @@ extension ViewController {
     }
     
     @IBAction func chooseFilter(_ button: UIButton) {
-        
-        // TODO: Remove any filter on video if any?
-        
         performSegue(withIdentifier: SegueIdentifier.showFilter.rawValue, sender: button)
     }
     
