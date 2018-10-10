@@ -125,7 +125,12 @@ extension ViewController {
     }
     
     func formatInterval(_ totalMilliseconds: Float64) -> String {
-        var milliseconds = UInt(totalMilliseconds)
+        guard let _totalMilliseconds = totalMilliseconds.toUInt() else {
+            return ""
+        }
+        
+        // Kinda redundant, but there would be an error if overflow occurs
+        var milliseconds = UInt(_totalMilliseconds)
         var seconds: UInt = milliseconds / 1000
         milliseconds %= 1000
         let minutes: UInt = seconds / 60
@@ -137,5 +142,18 @@ extension ViewController {
         let videoName: String = "video" + ".mov"
         return NSTemporaryDirectory().appending("/" + videoName)
     }
-    
+}
+
+
+extension Float64 {
+    func toUInt() -> UInt? {
+        let minUInt = Float64(UInt.min)
+        let maxUInt = Float64(UInt.max)
+        
+        guard case minUInt ... maxUInt = self else {
+            return nil
+        }
+        
+        return UInt(self)
+    }
 }
